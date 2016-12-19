@@ -1,8 +1,5 @@
 package com.firman.firebasestore;
 
-/**
- * Created by Firman on 11/8/2016.
- */
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;

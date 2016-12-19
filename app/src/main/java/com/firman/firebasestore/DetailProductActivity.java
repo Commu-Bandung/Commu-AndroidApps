@@ -1,9 +1,5 @@
 package com.firman.firebasestore;
 
-/**
- * Created by Firman on 11/8/2016.
- */
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
