@@ -19,7 +19,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,7 +39,6 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        AdapterView.OnItemClickListener,
         View.OnClickListener,
         FirebaseAuth.AuthStateListener{
 
@@ -94,6 +92,8 @@ public class HomeActivity extends AppCompatActivity
         TextView tvUsername = (TextView)navigationView.getHeaderView(0).findViewById(R.id.tv_username);
         String username = TextUtils.isEmpty(appPreference.getUsername()) ? appPreference.getEmail() : appPreference.getUsername();
         tvUsername.setText(username);
+
+
     }
 
     @Override
@@ -208,11 +208,6 @@ public class HomeActivity extends AppCompatActivity
         mAlertDialog.show();
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent mIntent = new Intent(HomeActivity.this, DetailProductActivity.class);
-        startActivity(mIntent);
-    }
 
     @Override
     public void onClick(View view) {

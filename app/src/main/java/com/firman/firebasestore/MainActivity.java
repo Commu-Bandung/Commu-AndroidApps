@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         setContentView(R.layout.activity_main);
 
         if (!Utils.verificaConexao(this)){
-            Utils.initToast(this,"Você não tem conexão com internet");
+            Utils.initToast(this,"Load Internet");
             finish();
         }else{
             bindViews();
@@ -354,7 +354,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private void signOut(){
         mFirebaseAuth.signOut();
         Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, HomeActivity.class));
         finish();
     }
 

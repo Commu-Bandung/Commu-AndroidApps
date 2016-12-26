@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.login.LoginResult;
@@ -47,8 +46,6 @@ public class LoginActivity extends AppCompatActivity
     EditText edtPassword;
     @BindView(R.id.btn_login)
     Button btnLogin;
-    @BindView(R.id.tv_register)
-    TextView tvRegister;
     @BindView(R.id.btn_login_google)
     Button btnLoginGoogle;
     @BindView(R.id.btn_login_facebook)
@@ -79,7 +76,6 @@ public class LoginActivity extends AppCompatActivity
         facebookLoginUtil = new FacebookLoginUtil(facebookLogin, this);
         facebookLoginUtil.setOnFacebookLoginSuccessListener(this);
 
-        tvRegister.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
         btnLoginFacebook.setOnClickListener(this);
         btnLoginGoogle.setOnClickListener(this);
@@ -94,9 +90,6 @@ public class LoginActivity extends AppCompatActivity
         Intent intent = null;
         boolean isLogin = false;
         switch (view.getId()) {
-            case R.id.tv_register:
-                intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                break;
 
             case R.id.btn_login:
                 String email = edtEmail.getText().toString().trim();
