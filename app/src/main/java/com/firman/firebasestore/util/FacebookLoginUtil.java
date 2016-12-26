@@ -13,8 +13,6 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-
-
 public class FacebookLoginUtil {
     public static final String TAG = FacebookLoginUtil.class.getSimpleName();
     private LoginButton fbLoginButton;
@@ -41,11 +39,11 @@ public class FacebookLoginUtil {
     }
 
     public void doLogin() {
-        fbLoginButton.setReadPermissions("public_profile","email");
+        fbLoginButton.setReadPermissions("email", "public_profile");
         fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "onLoginFacebookSuccessd");
+                Log.d(TAG, "onLoginFacebookSuccess");
                 getOnFacebookLoginSuccessListener().onFacebookLoginSuccess(loginResult);
             }
 
@@ -71,5 +69,4 @@ public class FacebookLoginUtil {
         void onFacebookLoginSuccess(LoginResult loginResult);
     }
 }
-
 

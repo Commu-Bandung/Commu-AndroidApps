@@ -15,4 +15,5 @@
         android:cacheColorHint="@android:color/transparent"
         android:scrollbarThumbVertical="@color/colorPrimary"
         android:scrollbarSize="3dp"></ListView>
+    
 </RelativeLayout>
