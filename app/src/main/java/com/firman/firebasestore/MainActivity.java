@@ -155,9 +155,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             case R.id.sendLocation:
                 locationPlacesIntent();
                 break;
-            case R.id.sign_out:
-                signOut();
-                break;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -351,12 +349,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     /**
      * Sign Out no login
      */
-    private void signOut(){
-        mFirebaseAuth.signOut();
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-        startActivity(new Intent(this, HomeActivity.class));
-        finish();
+
     }
 
-}
+
 

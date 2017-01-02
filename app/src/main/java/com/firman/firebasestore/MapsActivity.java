@@ -93,7 +93,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng hcmus = new LatLng(10.762963, 106.682394);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hcmus, 18));
         originMarkers.add(mMap.addMarker(new MarkerOptions()
-                .title("Đại học Khoa học tự nhiên")
+                .title("Politeknik Pos Indonesia")
                 .position(hcmus)));
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

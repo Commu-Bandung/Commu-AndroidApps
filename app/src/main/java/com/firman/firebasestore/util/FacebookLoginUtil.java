@@ -39,7 +39,7 @@ public class FacebookLoginUtil {
     }
 
     public void doLogin() {
-        fbLoginButton.setReadPermissions("email", "public_profile");
+        fbLoginButton.setReadPermissions("public_profile", "email");
         fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
