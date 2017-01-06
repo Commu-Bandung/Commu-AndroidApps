@@ -14,6 +14,11 @@
             android:id="@+id/nav_notification"
             android:icon="@drawable/ic_notifications"
             android:title="Maps Direction" />
+
+        <item
+            android:id="@+id/nav_sms"
+            android:icon="@drawable/ic_menu_send"
+            android:title="SMS and Call" />
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info"

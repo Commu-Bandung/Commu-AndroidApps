@@ -159,7 +159,7 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent mIntent = null;
         if (id == R.id.nav_category) {
-            Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+            Intent intent = new Intent(HomeActivity.this, MainActivityTab.class);
             startActivity(intent);
         } else if (id == R.id.nav_history) {
             Intent intent = new Intent(HomeActivity.this, MainActivity.class);
@@ -167,6 +167,10 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_notification) {
             Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_sms) {
+            Intent intent = new Intent(HomeActivity.this, SmsCallActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_about) {
@@ -212,7 +216,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.img_cart) {
-            Intent intent = new Intent(HomeActivity.this, MainActivityTab.class);
+            Intent intent = new Intent(HomeActivity.this, CartActivity.class);
             startActivity(intent);
         }
     }

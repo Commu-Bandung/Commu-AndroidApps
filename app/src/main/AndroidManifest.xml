@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.firman.firebasestore">
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,6 +16,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".base.StoreOnlineApplication"
@@ -41,19 +45,18 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <service
-            android:name=".MyFirebaseMessagingService">
+
+        <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-        <service
-            android:name=".MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-            </intent-filter>
-        </service>
         <activity android:name=".CartActivity" />
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -68,8 +71,8 @@
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name="com.firman.firebasestore.MainActivityTab"
-            android:label="@string/app_name" >
+            android:name=".MainActivityTab"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -77,21 +80,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.firman.firebasestore.ui.News_List_By_Category"
-            android:configChanges="orientation|keyboardHidden|screenSize" >
-        </activity>
+            android:name=".ui.News_List_By_Category"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name="com.firman.firebasestore.ui.News_Detail"
-            android:configChanges="orientation|keyboardHidden|screenSize" >
-        </activity>
+            android:name=".ui.News_Detail"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name="com.firman.firebasestore.ui.News_Favorite"
-            android:configChanges="orientation|keyboardHidden|screenSize" >
-        </activity>
+            android:name=".ui.News_Favorite"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity
-            android:name="com.firman.firebasestore.ui.About_Us"
-            android:configChanges="orientation|keyboardHidden|screenSize" >
-        </activity>
+            android:name=".ui.About_Us"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -109,15 +108,16 @@
 
         <service android:name="com.parse.PushService" />
 
-        <receiver android:name="com.parse.ParseBroadcastReceiver" >
+        <receiver android:name="com.parse.ParseBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
 
-
-
+        <activity android:name=".SmsActivity" />
+        <activity android:name=".CallActivity" />
+        <activity android:name=".SmsCallActivity"></activity>
     </application>
 
 </manifest>
