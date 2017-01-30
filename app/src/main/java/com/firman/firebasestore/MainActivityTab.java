@@ -20,7 +20,6 @@ import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseInstallation;
 import com.parse.PushService;
-import com.startapp.android.publish.StartAppAd;
 
 public class MainActivityTab extends AppCompatActivity {
 
@@ -34,13 +33,13 @@ public class MainActivityTab extends AppCompatActivity {
     int Numboftabs =2;
 
 
-    private StartAppAd startAppAd = new StartAppAd(this);
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StartAppAd.init(this, getString(R.string.startapp_dev_id), getString(R.string.startapp_app_id));
+
         setContentView(R.layout.activity_main_tab);
 
         Parse.initialize(this, getString(R.string.parse_application_id), getString(R.string.parse_client_key));
@@ -48,7 +47,7 @@ public class MainActivityTab extends AppCompatActivity {
         PushService.setDefaultPushCallback(this, MainActivityTab.class);
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
-        StartAppAd.showSlider(this);
+
 
         adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
 

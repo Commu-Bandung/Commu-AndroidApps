@@ -170,10 +170,15 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_sms) {
-            Intent intent = new Intent(HomeActivity.this, SmsCallActivity.class);
+            Intent intent = new Intent(HomeActivity.this, CallActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_about) {
+            Intent intent = new Intent(HomeActivity.this, ClusterActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_bantuan) {
+            Intent intent = new Intent(HomeActivity.this, ListActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
             showLogoutAlertDialog();
@@ -216,7 +221,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.img_cart) {
-            Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+            Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
             startActivity(intent);
         }
     }

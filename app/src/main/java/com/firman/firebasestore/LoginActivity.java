@@ -11,11 +11,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.facebook.login.LoginResult;
@@ -28,7 +26,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -38,14 +35,12 @@ import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity
         implements View.OnClickListener, OnCompleteListener<AuthResult>,
-        FacebookLoginUtil.OnFacebookLoginSuccessListener{
+        FacebookLoginUtil.OnFacebookLoginSuccessListener {
 
-    @BindView(R.id.edt_email)
-    EditText edtEmail;
-    @BindView(R.id.edt_password)
-    EditText edtPassword;
-    @BindView(R.id.btn_login)
-    Button btnLogin;
+    private GradientBackgroundPainter gradientBackgroundPainter;
+
+    private Button bSignIn;
+
     @BindView(R.id.btn_login_google)
     Button btnLoginGoogle;
     @BindView(R.id.btn_login_facebook)
@@ -64,10 +59,20 @@ public class LoginActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
+        View backgroundImage = findViewById(R.id.login);
         getSupportActionBar().setTitle("Login");
+        final int[] drawables = new int[5];
+        drawables[0] = R.drawable.gradient_1;
+        drawables[1] = R.drawable.gradient_2;
+        drawables[2] = R.drawable.gradient_3;
+        drawables[3] = R.drawable.gradient_4;
+        drawables[4] = R.drawable.gradient_5;
+
+        gradientBackgroundPainter = new GradientBackgroundPainter(backgroundImage, drawables);
+        gradientBackgroundPainter.start();
 
         appPreference = new AppPreference(LoginActivity.this);
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -76,7 +81,8 @@ public class LoginActivity extends AppCompatActivity
         facebookLoginUtil = new FacebookLoginUtil(facebookLogin, this);
         facebookLoginUtil.setOnFacebookLoginSuccessListener(this);
 
-        btnLogin.setOnClickListener(this);
+        bSignIn = (Button) findViewById(R.id.btn_login);
+        bSignIn.setOnClickListener(this);
         btnLoginFacebook.setOnClickListener(this);
         btnLoginGoogle.setOnClickListener(this);
 
@@ -90,22 +96,12 @@ public class LoginActivity extends AppCompatActivity
         Intent intent = null;
         boolean isLogin = false;
         switch (view.getId()) {
-
-            case R.id.btn_login:
-                String email = edtEmail.getText().toString().trim();
-                String password = edtPassword.getText().toString().trim();
-
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(LoginActivity.this, "All fields are required",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    progressDialog.show();
-                    mAuthCredential = EmailAuthProvider.getCredential(email, password);
-                    mFirebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this);
-                }
-
+            case R.id.btn_login :
+                Intent i = new Intent(this, SignInHere.class);
+                startActivity(i);
+                overridePendingTransition(R.anim.animation_enter, R.anim.animation_leave);
+                Toast.makeText(getApplicationContext(), "Login", Toast.LENGTH_LONG).show();
                 break;
-
             case R.id.btn_login_google:
                 googlePlusLoginUtil.signIn(this);
                 break;
@@ -134,6 +130,7 @@ public class LoginActivity extends AppCompatActivity
         if (googlePlusLoginUtil != null) {
             googlePlusLoginUtil.disconnect();
         }
+        gradientBackgroundPainter.stop();
     }
 
     @Override
@@ -177,4 +174,5 @@ public class LoginActivity extends AppCompatActivity
         mAuthCredential = FacebookAuthProvider.getCredential(loginResult.getAccessToken().getToken());
         mFirebaseAuth.signInWithCredential(mAuthCredential).addOnCompleteListener(this);
     }
+
 }

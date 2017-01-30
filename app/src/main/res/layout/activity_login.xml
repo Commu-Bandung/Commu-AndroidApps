@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/login"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,38 +12,34 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_marginTop="22dp"
         android:orientation="vertical"
         tools:context="com.firman.firebasestore.LoginActivity">
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:scaleType="fitXY"
+            android:layout_width="110dp"
+            android:layout_height="120dp"
+            android:scaleType="fitStart"
             android:src="@mipmap/rocket"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edt_email"
-            android:singleLine="true"
-            android:layout_marginBottom="16dp"
-            android:hint="Email"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edt_password"
-            android:singleLine="true"
-            android:layout_marginBottom="16dp"
-            android:hint="Password"
-            android:inputType="textPassword"/>
         <Button
+            android:layout_marginTop="60dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_login"
-            android:text="Login"
+            android:text="SIGN IN HERE"
+            android:textSize="15dp"
+            android:textColor="@color/colorWhite"
+            android:background="#FF9100"
             android:layout_marginBottom="16dp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:textColor="@color/colorWhite"
+            android:text="OR LOGIN VIA"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,6 +72,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_register"
             android:gravity="center"
+            android:textColor="@color/colorWhite"
             android:layout_marginTop="16dp"
             android:text="Develop by Commu"/>
     </LinearLayout>

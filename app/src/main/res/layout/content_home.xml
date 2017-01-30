@@ -4,44 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".HomeActivity"
-    android:orientation="vertical"
     tools:showIn="@layout/app_bar_home">
 
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginLeft="90dp"
-        android:src="@mipmap/rocket"
-        android:id="@+id/img"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp" />
+    <!--START CONTAIN-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="160dp"
+        android:background="@drawable/officer"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:textSize="30dp"
-        android:layout_marginTop="10dp"
-        android:text="Commu is"
-        android:layout_marginLeft="70dp"
-        android:layout_alignParentTop="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:text="Under Development"
-        android:layout_marginLeft="50dp"
-        android:layout_alignParentTop="true" />
-
-
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Partnership With Company"
+            android:layout_marginTop="80dp"
+            android:textSize="21dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="normal|bold"
+            android:fontFamily="sans-serif"
+            android:typeface="normal" />
+    </LinearLayout>
+    <!--END DATA-->
+    <!--START CONTAIN-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/polpos"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make Great Event in Campus "
+            android:layout_marginTop="170dp"
+            android:textSize="20dp"
+            android:layout_marginLeft="36dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="normal|bold"
+            android:fontFamily="sans-serif"
+            android:typeface="normal" />
+    </LinearLayout>
+    <!--END DATA-->
+    <!--START CONTAIN-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="190dp"
+        android:background="@drawable/office1"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sponsorship With Commu"
+            android:layout_marginTop="90dp"
+            android:textSize="21dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="normal|bold"
+            android:fontFamily="sans-serif"
+            android:typeface="normal" />
+    </LinearLayout>
+    <!--END DATA-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/officer"
+        android:orientation="vertical">
+    </LinearLayout>
+    <!--END DATA-->
 
 </LinearLayout>

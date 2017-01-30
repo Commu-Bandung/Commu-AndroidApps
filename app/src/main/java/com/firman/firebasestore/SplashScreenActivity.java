@@ -4,6 +4,7 @@ package com.firman.firebasestore;
  * Created by Firman on 11/8/2016.
  */
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private AppPreference appPreference;
     private DelayAsync mDelayAsync;
+    public boolean isFirstStart;
+    Context mcontext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         mDelayAsync.cancel(true);
         super.onDestroy();
     }
+
+
 
     class DelayAsync extends AsyncTask<Void, Void, Void>{
         @Override
@@ -61,7 +66,11 @@ public class SplashScreenActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+
     }
+
+
 
 
 }

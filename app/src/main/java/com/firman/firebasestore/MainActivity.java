@@ -24,6 +24,7 @@ import com.firman.firebasestore.model.MapModel;
 import com.firman.firebasestore.model.UserModel;
 import com.firman.firebasestore.util.Utils;
 import com.firman.firebasestore.view.FullScreenImageActivity;
+import com.google.android.gms.appinvite.AppInviteInvitation;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -34,6 +35,7 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     //Class Model
     private UserModel userModel;
-
+    private static final int REQUEST_INVITE = 1;
     //ViewsUI
     private RecyclerView rvListMessage;
     private LinearLayoutManager mLinearLayoutManager;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     private EmojiconEditText edMessage;
     private View contentRoot;
     private EmojIconActions emojIcon;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     //File
     private File filePathImageCamera;
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         if (!Utils.verificaConexao(this)){
             Utils.initToast(this,"Load Internet");
             finish();
@@ -101,6 +104,23 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         StorageReference storageRef = storage.getReferenceFromUrl(Utils.URL_STORAGE_REFERENCE).child(Utils.FOLDER_STORAGE_IMG);
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_INVITE){
+            if (resultCode == RESULT_OK){
+                String[] ids = AppInviteInvitation.getInvitationIds(resultCode, data);
+                        Log.d(TAG, "Invitation Sent : "+ids);
+                Bundle payload = new Bundle();
+                payload.putString(FirebaseAnalytics.Param.VALUE, "sent");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
+                        payload);
+            }else{
+                Log.d(TAG, "Failed to send invitation.");
+                Bundle payload = new Bundle();
+                payload.putString(FirebaseAnalytics.Param.VALUE, "not sent");
+                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
+                        payload);
+            }
+        }
 
         if (requestCode == IMAGE_GALLERY_REQUEST){
             if (resultCode == RESULT_OK){
@@ -134,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         }
 
+
     }
 
     @Override
@@ -155,6 +176,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             case R.id.sendLocation:
                 locationPlacesIntent();
                 break;
+            case R.id.invite_menu:
+                sendInvitation();
+                return true;
 
         }
 
@@ -191,6 +215,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         String uri = String.format("geo:%s,%s?z=17&q=%s,%s", latitude,longitude,latitude,longitude);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);
+    }
+
+
+    private void sendInvitation() {
+        Intent intent = new AppInviteInvitation.IntentBuilder(getString(R.string.invitation_title))
+                .setMessage(getString(R.string.invitation_message))
+                .setCallToActionText(getString(R.string.invitation_cta))
+                .build();
+        startActivityForResult(intent, REQUEST_INVITE);
     }
 
 
@@ -349,6 +382,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     /**
      * Sign Out no login
      */
+
 
     }
 

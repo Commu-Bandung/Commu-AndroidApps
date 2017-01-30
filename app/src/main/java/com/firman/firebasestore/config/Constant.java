@@ -9,13 +9,13 @@ import java.io.Serializable;
 public class Constant implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    public static final String SERVER_IMAGE_CATEGORY="http://project0.pe.hu/birterapp/upload/category/";
-    public static final String SERVER_IMAGE_NEWSLIST_THUMBS="http://project0.pe.hu/birterapp/upload/thumbs/";
-    public static final String SERVER_IMAGE_NEWSLISTDETAILS="http://project0.pe.hu/birterapp/upload/";
-    public static final String LATEST_URL = "http://project0.pe.hu/birterapp/api.php?latest_news=50";
-    public static final String CATEGORY_URL = "http://project0.pe.hu/birterapp/api.php";
-    public static final String CATEGORY_ITEM_URL = "http://project0.pe.hu/birterapp/api.php?cat_id=";
-    public static final String COMPANY_DETAILS_URL = "http://project0.pe.hu/birterapp/api.php?apps_details";
+    public static final String SERVER_IMAGE_CATEGORY="http://192.168.43.68/company/event/upload/category/";
+    public static final String SERVER_IMAGE_NEWSLIST_THUMBS="http://192.168.43.68/company/event/upload/thumbs/";
+    public static final String SERVER_IMAGE_NEWSLISTDETAILS="http://192.168.43.68/company/event/upload/";
+    public static final String LATEST_URL = "http://192.168.43.68/company/event/api.php?latest_news=50";
+    public static final String CATEGORY_URL = "http://192.168.43.68/company/event/api.php";
+    public static final String CATEGORY_ITEM_URL = "http://192.168.43.68/company/event/api.php?cat_id=";
+    public static final String COMPANY_DETAILS_URL = "http://192.168.43.68/company/event/api.php?apps_details";
     public static final String CATEGORY_ARRAY_NAME="NewsApp";
     public static final String CATEGORY_NAME="category_name";
     public static final String CATEGORY_CID="cid";
